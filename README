@@ -1,0 +1,7 @@
+A very simple plugin that duplicates lines:
+  - control+alt+up duplicates the line to the above line
+  - control+alt+down duplicates the line to the below line
+
+Install:
+	* mkdir -p $HOME/.local/share/gedit/plugins
+	* cp -r dupline dupline.plugin $HOME/.local/share/gedit/plugins/
