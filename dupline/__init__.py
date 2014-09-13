@@ -103,14 +103,12 @@ class DupLineViewActivatable(GObject.Object, Gedit.ViewActivatable):
         end.forward_line()
         text = buf.get_slice(start, end, True)
         if text is not None and text != "":
-            add_newline = False
-            if end.is_end():
-                add_newline = True
+            forwarded = start.forward_line()
 
             buf.begin_user_action()
-            buf.insert(start, text)
-            if add_newline:
+            if not forwarded:
                 buf.insert(start, "\n")
+            buf.insert(start, text)
             buf.end_user_action()
 
     def dupline_down(self):
@@ -123,12 +121,12 @@ class DupLineViewActivatable(GObject.Object, Gedit.ViewActivatable):
         end.forward_line()
         text = buf.get_slice(start, end, True)
         if text is not None and text != "":
-            forwarded = start.forward_line()
+            is_end = end.is_end()
 
             buf.begin_user_action()
-            if not forwarded:
-                buf.insert(start, "\n")
             buf.insert(start, text)
+            if is_end:
+                buf.insert(start, "\n")
             buf.end_user_action()
 
 # ex:ts=4:et:
