@@ -30,8 +30,8 @@ class DupLineAppActivatable(GObject.Object, Gedit.AppActivatable):
         self.app.set_accels_for_action("win.dupline-down", ["<Super><Alt>Down"])
 
     def do_deactivate(self):
-        self.app.set_accels_for_action("win.dupline-up", None)
-        self.app.set_accels_for_action("win.dupline-down", None)
+        self.app.set_accels_for_action("win.dupline-up", [])
+        self.app.set_accels_for_action("win.dupline-down", [])
 
 
 class DupLineWindowActivatable(GObject.Object, Gedit.WindowActivatable):
